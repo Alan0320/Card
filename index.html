@@ -11,6 +11,7 @@
         <div class="name ">
             <h2 class="mb8 fwb"><span id="response_name"></span></h2>
             <p class="mb8">ID <span id="response_id"></span></p>
+            <button id="generateVCard">生成 vCard</button>
             <ul>
                 <li>資深工程師</li>
                 <li>機器視覺部</li>
@@ -45,52 +46,107 @@
     </div>
 </body>
 
-
 <script>
+    // 替換為您部署的 Google Apps Script URL
+    var scriptUrl = 'https://script.google.com/macros/s/AKfycbySPpZ5IdQa2Kp5YxH_2RHY6iv6VBnbszy6mOVCg9iXJ6A717qTnDGWa-I1DBze1LNk/exec';
 
-    // 需要 response_id、response_name、response_phonenumbe，就完成了～
-    
- 
-     // 替換為您部署的 Google Apps Script URL
-     var scriptUrl = 'https://script.google.com/macros/s/AKfycbySPpZ5IdQa2Kp5YxH_2RHY6iv6VBnbszy6mOVCg9iXJ6A717qTnDGWa-I1DBze1LNk/exec';
- 
-     // 調用 Google Apps Script 函數並獲取結果
-     function doGet(e) {
-       var params = e.parameter;
-       var vid = params.id;// 替換為您想要查找的索引值
-       //var vid ="1"; 
-       var vindex_id = 0;
-       var vindex_name = 1;
-       var vindex_mail = 2;
-       var vindex_phone = 3;
-       var vindex_position = 4;
-       fetch(scriptUrl + '?id='+vid+'&index='+vindex_name)//+'&index='+vindex
-         .then(function(response) {
-           return response.text();
-         })
-         .then(function(data) {
-           var responseElement = document.getElementById('response_name');
-           responseElement.textContent = data;
-         })
-         .catch(function(error) {
-           console.log('Error:', error);
-         });
+    // 获取网址参数的函数
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
 
-       fetch(scriptUrl + '?id='+vid+'&index='+vindex_mail)//+'&index='+vindex
-         .then(function(response) {
-           return response.text();
-         })
-         .then(function(data) {
-           var responseElement = document.getElementById('response_id');
-           responseElement.textContent = data;
-         })
-         .catch(function(error) {
-           console.log('Error:', error);
-         });
-     }
- 
-     // 調用 fetchValue 函數
-     var val= doGet();
-     //alert(val);
-   </script>
+    // 调用 Google Apps Script 函数并获取结果
+    function doGet() {
+        var vid = getUrlParameter('id'); // 从网址参数中获取 id 值
+
+        var vindex_id = 0;
+        var vindex_name = 1;
+        var vindex_mail = 2;
+        var vindex_phone = 3;
+        var vindex_position = 4;
+        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_name)
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(data) {
+                var responseElement = document.getElementById('response_name');
+                responseElement.textContent = data;
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+
+        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_mail)
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(data) {
+                var responseElement = document.getElementById('response_mail');
+                responseElement.textContent = data;
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_phone)
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(data) {
+                var responseElement = document.getElementById('response_phonenumbe');
+                responseElement.textContent = data;
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+    }
+
+    // 调用 doGet 函数
+    doGet(); // 不需要传递参数，已经从网址中获取 id
+
+    // 生成 vCard 数据
+    function generateVCard() {
+        // 替换为您的联系人信息
+        var contactName = "Richard";
+        var contactEmail = "Richard.Kao@BenQMaterials.com";
+        var contactPhone = "(03)374-8800#2910";
+        var contactOrganization = "明基材料股份有限公司";
+	var contactAddress = "桃園市333403龜山區建國東路29號"; // 替换为联系人的实际地址
+
+        //var contactName = document.getElementById('response_name').textContent;
+        //var contactEmail = document.getElementById('response_mail').textContent;
+        //var contactPhone = document.getElementById('response_phonenumbe').textContent;
+        //var contactOrganization = "明基材料股份有限公司";
+
+        // 创建 vCard 文本
+        var vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+FN:${contactName}
+ORG:${contactOrganization}
+TEL:${contactPhone}
+EMAIL:${contactEmail}
+ADR;TYPE=WORK:;;${contactAddress}
+END:VCARD
+`;
+
+        // 创建一个 Blob 对象以便下载
+        var blob = new Blob([vCardData], { type: "text/vcard" });
+
+        // 创建一个下载链接
+        var downloadLink = document.createElement("a");
+        downloadLink.href = window.URL.createObjectURL(blob);
+        downloadLink.download = "contact.vcf"; // 设置文件名
+
+        // 模拟点击下载链接
+        downloadLink.click();
+    }
+
+    // 添加点击事件处理程序到按钮
+    var generateButton = document.getElementById("generateVCard");
+    generateButton.addEventListener("click", generateVCard);
+</script>
+
 </html>
