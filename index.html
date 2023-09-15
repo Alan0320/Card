@@ -146,7 +146,7 @@
 
         var contactName = document.getElementById('response_name').textContent;
         var contactEmail = document.getElementById('response_email').textContent;
-        var contactPhone = "(03)374-8800"//#"+document.getElementById('response_phonenumbe').textContent;
+        var contactPhone = "(03)374-8800#"+document.getElementById('response_phonenumbe').textContent;
 	var contactAddress = "桃園市333403龜山區建國東路29號";
         var contactOrganization = "明基材料股份有限公司";
 
@@ -154,7 +154,7 @@
         var vCardData = `
 BEGIN:VCARD
 VERSION:3.0
-FN;CHARSET=UTF-8:${contactName}
+N;CHARSET=UTF-8:${contactName}
 ORG;CHARSET=UTF-8:${contactOrganization}
 TEL:${contactPhone}
 EMAIL:${contactEmail}
