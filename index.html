@@ -68,8 +68,8 @@
                 return response.text();
             })
             .then(function(data) {
-                var responseElement1 = document.getElementById('response_name');
-                responseElement1.textContent = data.replace(/"/g, '');
+                var responseElement = document.getElementById('response_name');
+                responseElement.textContent = data.replace(/"/g, '');
             })
             .catch(function(error) {
                 console.log('Error:', error);
@@ -80,8 +80,8 @@
                 return response.text();
             })
             .then(function(data) {
-                var responseElement2 = document.getElementById('response_email');
-                responseElement2.textContent = data.replace(/"/g, '');
+                var responseElement = document.getElementById('response_email');
+                responseElement.textContent = data.replace(/"/g, '');
             })
             .catch(function(error) {
                 console.log('Error:', error);
@@ -91,8 +91,8 @@
                 return response.text();
             })
             .then(function(data) {
-                var responseElement3 = document.getElementById('response_phonenumbe');
-                responseElement3.textContent = data.replace(/"/g, '');
+                var responseElement = document.getElementById('response_phonenumbe');
+                responseElement.textContent = data.replace(/"/g, '');
             })
             .catch(function(error) {
                 console.log('Error:', error);
@@ -102,8 +102,8 @@
                 return response.text();
             })
             .then(function(data) {
-                var responseElement4 = document.getElementById('response_title');
-                responseElement4.textContent = data.replace(/"/g, '');
+                var responseElement = document.getElementById('response_title');
+                responseElement.textContent = data.replace(/"/g, '');
             })
             .catch(function(error) {
                 console.log('Error:', error);
@@ -113,8 +113,8 @@
                 return response.text();
             })
             .then(function(data) {
-                var responseElement5 = document.getElementById('response_department');
-                responseElement5.textContent = data.replace(/"/g, '');
+                var responseElement = document.getElementById('response_department');
+                responseElement.textContent = data.replace(/"/g, '');
             })
             .catch(function(error) {
                 console.log('Error:', error);
@@ -124,8 +124,8 @@
                 return response.text();
             })
             .then(function(data) {
-                var responseElement6 = document.getElementById('response_Office');
-                responseElement6.textContent = data.replace(/"/g, '');
+                var responseElement = document.getElementById('response_Office');
+                responseElement.textContent = data.replace(/"/g, '');
             })
             .catch(function(error) {
                 console.log('Error:', error);
@@ -138,7 +138,7 @@
     // 生成 vCard 数据
     function generateVCard() {
         // 替换为您的联系人信息
-        //var contactName = "Richard";
+        //var contactName = Richard;
         //var contactEmail = "Richard.Kao@BenQMaterials.com";
         //var contactPhone = "(03)374-8800#2910";
         //var contactOrganization = "明基材料股份有限公司";
@@ -146,7 +146,7 @@
 
         var contactName = document.getElementById('response_name').textContent;
         var contactEmail = document.getElementById('response_email').textContent;
-        var contactPhone = "(03)374-8800#"+document.getElementById('response_phonenumbe').textContent;
+        var contactPhone = "(03)374-8800"//#"+document.getElementById('response_phonenumbe').textContent;
 	var contactAddress = "桃園市333403龜山區建國東路29號";
         var contactOrganization = "明基材料股份有限公司";
 
