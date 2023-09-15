@@ -56,14 +56,32 @@
  
      // 調用 Google Apps Script 函數並獲取結果
      function doGet() {
-       var vid ='1'; // 替換為您想要查找的索引值
-       var vindex = 2;
-       fetch(scriptUrl + '?id='+vid+'&index='+vindex)
+       var params = e.parameter;
+       var vid = params.id;
+       //var vid ='1'; // 替換為您想要查找的索引值
+       var vindex_id = 0;
+       var vindex_name = 1;
+       var vindex_mail = 2;
+       var vindex_phone = 3;
+       var vindex_position = 4;
+       fetch(scriptUrl + '?id='+vid+'&index='+vindex_name)//+'&index='+vindex
          .then(function(response) {
            return response.text();
          })
          .then(function(data) {
            var responseElement = document.getElementById('response_name');
+           responseElement.textContent = data;
+         })
+         .catch(function(error) {
+           console.log('Error:', error);
+         });
+
+       fetch(scriptUrl + '?id='+vid+'&index='+vindex_mail)//+'&index='+vindex
+         .then(function(response) {
+           return response.text();
+         })
+         .then(function(data) {
+           var responseElement = document.getElementById('response_id');
            responseElement.textContent = data;
          })
          .catch(function(error) {
