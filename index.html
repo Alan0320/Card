@@ -7,48 +7,42 @@
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
-    <div class="header df container jcsb mt90">
+    <div class="bg line">
+    <div class="header  container  mt90 ">
         <div class="name ">
-            <h2 class="mb8 fwb"><span id="response_name"></span></h2>
-            <p class="mb8">ID <span id="response_id"></span></p>
-            <button id="generateVCard">生成 vCard</button>
+            <h2 class="mb8 fwb"><span id=response_name></span></h2>            
+	    <button id="generateVCard">生成 vCard</button>
             <ul>
-                <li>資深工程師</li>
-                <li>機器視覺部</li>
-                <li>先端設備開發處</li>
+            <li><span id=response_title></span></li>
+            <li><span id=response_department></span></li>
+            <li><span id=response_Office></span></li>
             </ul>
         </div>
-        <div class="logo"><img src="https://www.benq.com/etc/designs/g6/clientlib-site/img/header-icon/nav-icon-benq-logo.png" alt="BenQ-logo"></div>
-    </div>
     
     <div class="card-body container2">
         <h3 class="mb8">明基材料股份有限公司</h3>
         <ul class="body-item">
             <li><span class="fwb">總部</span> 333403 桃園市龜山區建國東路29號</li>
             <li>
-                <ul class="df jcsb">
-                    <li><span class="fwb">電話</span> +886 374-8800 #2287</li>
-                    <li><span class="fwb">手機</span><span id="response_phonenumber"></span></li>
-                </ul>
-            </li>
-            <ul class="df jcsb">
+            <li><span class="fwb">電話</span> +886 374-8800 分機<span id=response_phonenumbe></span></li>
+            <ul class="df jcsb ulrwd">
                 <li><span class="fwb">傳真</span> +886 374-8870</li>
                 <li>  </li>
-                <li><span class="fwb">統一編號</span> 6549778</li>
+                <li><span class="fwb">統一編號</span> 16549778</li>
             </ul>
-            <li>
 
-            </li>
-            <li><span id="response_email"></span></li>
+            <li><span id=response_email></span></li>
             <li>BenQMaterials.com</li>
         </ul>
 
     </div>
+    </div>
+</div>
 </body>
 
 <script>
     // 替換為您部署的 Google Apps Script URL
-    var scriptUrl = 'https://script.google.com/macros/s/AKfycbySPpZ5IdQa2Kp5YxH_2RHY6iv6VBnbszy6mOVCg9iXJ6A717qTnDGWa-I1DBze1LNk/exec';
+    var scriptUrl = 'https://script.google.com/macros/s/AKfycbxGdvKDiEIzawywI6q8wSTcwz9DT4U0ExCm4Yv7QWJO6t8mwQObkhJKGjPRlK3G7bn_/exec';
 
     // 获取网址参数的函数
     function getUrlParameter(name) {
@@ -66,7 +60,9 @@
         var vindex_name = 1;
         var vindex_mail = 2;
         var vindex_phone = 3;
-        var vindex_position = 4;
+        var vindex_title = 4;
+        var vindex_department = 5;
+        var vindex_Office = 6;
         fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_name)
             .then(function(response) {
                 return response.text();
@@ -84,7 +80,7 @@
                 return response.text();
             })
             .then(function(data) {
-                var responseElement = document.getElementById('response_mail');
+                var responseElement = document.getElementById('response_email');
                 responseElement.textContent = data;
             })
             .catch(function(error) {
@@ -101,6 +97,39 @@
             .catch(function(error) {
                 console.log('Error:', error);
             });
+        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_title)
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(data) {
+                var responseElement = document.getElementById('response_title');
+                responseElement.textContent = data;
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_department)
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(data) {
+                var responseElement = document.getElementById('response_department');
+                responseElement.textContent = data;
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
+        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_Office)
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(data) {
+                var responseElement = document.getElementById('response_Office');
+                responseElement.textContent = data;
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+            });
     }
 
     // 调用 doGet 函数
@@ -109,16 +138,17 @@
     // 生成 vCard 数据
     function generateVCard() {
         // 替换为您的联系人信息
-        var contactName = "Richard";
-        var contactEmail = "Richard.Kao@BenQMaterials.com";
-        var contactPhone = "(03)374-8800#2910";
-        var contactOrganization = "明基材料股份有限公司";
-	var contactAddress = "桃園市333403龜山區建國東路29號"; // 替换为联系人的实际地址
-
-        //var contactName = document.getElementById('response_name').textContent;
-        //var contactEmail = document.getElementById('response_mail').textContent;
-        //var contactPhone = document.getElementById('response_phonenumbe').textContent;
+        //var contactName = "Richard";
+        //var contactEmail = "Richard.Kao@BenQMaterials.com";
+        //var contactPhone = "(03)374-8800#2910";
         //var contactOrganization = "明基材料股份有限公司";
+	//var contactAddress = "桃園市333403龜山區建國東路29號";
+
+        var contactName = document.getElementById('response_name').textContent;
+        var contactEmail = document.getElementById('response_email').textContent;
+        var contactPhone = "(03)374-8800#"+document.getElementById('response_phonenumbe').textContent;
+	var contactAddress = "桃園市333403龜山區建國東路29號";
+        var contactOrganization = "明基材料股份有限公司";
 
         // 创建 vCard 文本
         var vCardData = `
@@ -148,5 +178,4 @@ END:VCARD
     var generateButton = document.getElementById("generateVCard");
     generateButton.addEventListener("click", generateVCard);
 </script>
-
 </html>
