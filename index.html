@@ -55,10 +55,10 @@
      var scriptUrl = 'https://script.google.com/macros/s/AKfycbySPpZ5IdQa2Kp5YxH_2RHY6iv6VBnbszy6mOVCg9iXJ6A717qTnDGWa-I1DBze1LNk/exec';
  
      // 調用 Google Apps Script 函數並獲取結果
-     function doGet() {
+     function doGet(e) {
        var params = e.parameter;
-       var vid = params.id;
-       //var vid ='1'; // 替換為您想要查找的索引值
+       var vid = params.id;// 替換為您想要查找的索引值
+       //var vid ="1"; 
        var vindex_id = 0;
        var vindex_name = 1;
        var vindex_mail = 2;
