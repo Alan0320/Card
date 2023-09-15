@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="style.css">
 <body>
     <div class="bg line">
-    <div class="header  container  mt90 ">
-        <div class="name ">
-            <h2 class="mb8 fwb"><span id=response_name></span></h2>            
+    <div class="header container mt90">
+        <div class="name">
+            <h2 class="mb8 fwb"><span id="response_name"></span></h2>            
 	    <button id="generateVCard">生成 vCard</button>
             <ul>
-            <li><span id=response_title></span></li>
-            <li><span id=response_department></span></li>
-            <li><span id=response_Office></span></li>
+            <li><span id="response_title"></span></li>
+            <li><span id="response_department"></span></li>
+            <li><span id="response_Office"></span></li>
             </ul>
         </div>
     
@@ -24,14 +24,14 @@
         <ul class="body-item">
             <li><span class="fwb">總部</span> 333403 桃園市龜山區建國東路29號</li>
             <li>
-            <li><span class="fwb">電話</span> +886 374-8800 分機<span id=response_phonenumbe></span></li>
+            <li><span class="fwb">電話</span> +886 374-8800 分機<span id="response_phonenumbe"></span></li>
             <ul class="df jcsb ulrwd">
                 <li><span class="fwb">傳真</span> +886 374-8870</li>
                 <li>  </li>
                 <li><span class="fwb">統一編號</span> 16549778</li>
             </ul>
 
-            <li><span id=response_email></span></li>
+            <li><span id="response_email"></span></li>
             <li>BenQMaterials.com</li>
         </ul>
 
@@ -106,76 +106,4 @@
                 responseElement.textContent = data;
             })
             .catch(function(error) {
-                console.log('Error:', error);
-            });
-        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_department)
-            .then(function(response) {
-                return response.text();
-            })
-            .then(function(data) {
-                var responseElement = document.getElementById('response_department');
-                responseElement.textContent = data;
-            })
-            .catch(function(error) {
-                console.log('Error:', error);
-            });
-        fetch(scriptUrl + '?id=' + vid + '&index=' + vindex_Office)
-            .then(function(response) {
-                return response.text();
-            })
-            .then(function(data) {
-                var responseElement = document.getElementById('response_Office');
-                responseElement.textContent = data;
-            })
-            .catch(function(error) {
-                console.log('Error:', error);
-            });
-    }
-
-    // 调用 doGet 函数
-    doGet(); // 不需要传递参数，已经从网址中获取 id
-
-    // 生成 vCard 数据
-    function generateVCard() {
-        // 替换为您的联系人信息
-        //var contactName = "Richard";
-        //var contactEmail = "Richard.Kao@BenQMaterials.com";
-        //var contactPhone = "(03)374-8800#2910";
-        //var contactOrganization = "明基材料股份有限公司";
-	//var contactAddress = "桃園市333403龜山區建國東路29號";
-
-        var contactName = document.getElementById('response_name').textContent;
-        var contactEmail = document.getElementById('response_email').textContent;
-        var contactPhone = "(03)374-8800#"+document.getElementById('response_phonenumbe').textContent;
-	var contactAddress = "桃園市333403龜山區建國東路29號";
-        var contactOrganization = "明基材料股份有限公司";
-
-        // 创建 vCard 文本
-        var vCardData = `
-BEGIN:VCARD
-VERSION:3.0
-FN:${contactName}
-ORG:${contactOrganization}
-TEL:${contactPhone}
-EMAIL:${contactEmail}
-ADR;TYPE=WORK:;;${contactAddress}
-END:VCARD
-`;
-
-        // 创建一个 Blob 对象以便下载
-        var blob = new Blob([vCardData], { type: "text/vcard" });
-
-        // 创建一个下载链接
-        var downloadLink = document.createElement("a");
-        downloadLink.href = window.URL.createObjectURL(blob);
-        downloadLink.download = "contact.vcf"; // 设置文件名
-
-        // 模拟点击下载链接
-        downloadLink.click();
-    }
-
-    // 添加点击事件处理程序到按钮
-    var generateButton = document.getElementById("generateVCard");
-    generateButton.addEventListener("click", generateVCard);
-</script>
-</html>
+                console.log('Error:',
