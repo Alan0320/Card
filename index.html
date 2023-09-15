@@ -154,12 +154,11 @@
         var vCardData = `
 BEGIN:VCARD
 VERSION:3.0
-CHARSET:UTF-8
-FN:${contactName}
-ORG:${contactOrganization}
+FN;CHARSET=UTF-8:${contactName}
+ORG;CHARSET=UTF-8:${contactOrganization}
 TEL:${contactPhone}
 EMAIL:${contactEmail}
-ADR;TYPE=WORK:;;${contactAddress}
+ADR;;CHARSET=UTF-8:;;${contactAddress}
 END:VCARD
 `;
 
