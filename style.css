@@ -126,7 +126,6 @@ h2{
 h3{
     font-size: 30px;
     line-height: 1.8rem;
-    padding-bottom: 8px;
 }
 
 .card-body{
@@ -209,9 +208,9 @@ h3{
     }
     
     .body-item{
-       max-width: 380px;
+       max-width: 240px;
        font-size: 8px;
-       line-height: 1rem;
+       line-height: 0.8rem;
     }
     
 
