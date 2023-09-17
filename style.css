@@ -67,21 +67,17 @@ http://meyerweb.com/eric/tools/css/reset/
     background: url(img/name_card.bmp) no-repeat top right / cover;
     background-repeat: no-repeat;
     margin: 0 auto;
-    max-width:  760px;
+    width:  760px;
 
  }
  .container{
-    max-width: 760px;
     margin: 0 auto;
-    padding-left: 60px;
+    padding-left: 80px;
     padding-right: 60px;
-
 }
 
 .container2{
-    max-width: 760px;
     margin: 0 auto;
-
 }
 
 
@@ -105,114 +101,121 @@ http://meyerweb.com/eric/tools/css/reset/
 .line{
     margin-top: 72px;
     border:rgb(174, 174, 174) 0.5px solid;
-    width: 50%;
+    width: 1064px;
+    height: 650px;
+
 }
 
 
 h2{
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1.8rem;
     font-family: 'Poppins', sans-serif;
 }
 
 .name{
     line-height: 1.5rem;
-
 }
 
-h3{
+.name li{
+    margin-top: 8px;
     font-size: 20px;
     line-height: 1.8rem;
 }
 
+h3{
+    font-size: 30px;
+    line-height: 1.8rem;
+    padding-bottom: 8px;
+}
+
 .card-body{
-    margin-top: 36px;
+    margin-top: 100px;
     line-height: 1.5rem;
     padding-bottom: 32px;
 
 }
 
 .body-item{
-   max-width: 320px;
-   font-size: 14px;
-
+   max-width: 380px;
+   font-size: 18px;
+   line-height: 1.8;
 }
+
 
 .fwb{
     font-weight: bolder;
 }
 
-@media(max-width: 760px) {
-    .bg{
-        background: url(img/name_card.bmp) no-repeat top -20px / cover;
-        background-repeat: no-repeat;
-        max-width:  360px;
-    }
 
-
-    .container{
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-    .header{
-        margin-top: 240PX;
-
-    }
-
-    .header h2{
-        font-size: 16px;
-    }
-
-    h3{
-        font-size: 16px;
-
-    }
-
-    ul li{
-        font-size: 12px;
-
-    }
-    .ulrwd{
-        display: block;
-    }
-
-
-
-}
-
-@media(max-width: 390px) {
-
-    .header{
-        margin-top: 360PX;
-
-    }
-
-    .header h2{
-        font-size: 16px;
-    }
-    h3{
-        font-size: 12px;
-
-    }
+@media(max-width: 768px) {
 
     .bg{
-        background: url(img/name_card.bmp) no-repeat top -600px / cover;
+        background: url(img/name_card.bmp) no-repeat top right / cover;
         background-repeat: no-repeat;
-        max-width:  360px;
-    }
+        margin: 0 auto;
+        width:  375px;
+    
+     }
+
     .line{
-        margin-top: 12px;
+        margin-top: 180px;
+        border:rgb(174, 174, 174) 0.5px solid;
+        width: 375px;
+        height: 232px
+    
     }
 
     .container{
-        padding-left: 12px;
-        padding-right: 12px;
+        margin: 0 auto;
+        padding-left: 24px;
+        padding-right: 60px;
+    }
+    .header{
+        margin-top: 24px;
+    }
+    .but{
+        display: flex;
     }
 
-    .ulrwd{
-        display: block;
+    h2{
+        font-size: 15px;
+        line-height: 1.8rem;
+        margin-right: 9px;
+    }
+    
+    .name{
+        line-height: 1.2rem;
+
+    }
+    
+    .name li{
+        margin-top: 8px;
+        font-size: 9px;
+        line-height: 0.5rem;
     }
 
-
+    
+    h3{
+        font-size: 15px;
+        margin-bottom: 0px;
+    }
+    
+    .card-body{
+        margin-top: 8px;
+        line-height: 1.5rem;
+        padding-bottom: 24px;
+    
+    }
+    
+    .body-item{
+       max-width: 380px;
+       font-size: 8px;
+       line-height: 1rem;
+    }
+    
 
 }
+
+
+
