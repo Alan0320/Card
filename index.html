@@ -55,20 +55,26 @@
     }
 
     // 调用 Google Apps Script 函数并获取结果
-    function doGet() {
-        var vid = getUrlParameter('id'); // 从网址参数中获取 id 值
-       // 將 day 參數轉換為 Date 物件
-        var paramDate = new Date(dayParam);
+        function doGet() {
+            var vid = getUrlParameter('id'); // 从网址参数中获取 id 值
+            var dayParam = getUrlParameter('day'); // 从网址参数中获取 day 值
 
-        // 計算時間差異（以毫秒為單位）
-        var timeDifference = currentDate - paramDate;
+            // 如果 day 参数不存在或格式不正确，或者时间差超过30天，跳转到 error.html
+            if (!dayParam || isNaN(Date.parse(dayParam))) {
+                window.location.href = 'error.html?message=無效的日期參數';
+                return;
+            }
 
-        // 計算天數
-        var daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+            var currentDate = new Date();
+            var paramDate = new Date(dayParam);
 
-    # 如果時間差異超過30天，返回錯誤頁面
-    if difference.days > 30:
-        return render_template('error.html', message='網址過期')
+            var timeDifference = currentDate - paramDate;
+            var daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+
+            if (daysDifference > 30) {
+                window.location.href = 'error.html?message=網址過期';
+                return;
+            }
 
         var vindex_id = 0;
         var vindex_name = 1;
