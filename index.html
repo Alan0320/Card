@@ -66,10 +66,9 @@
         // 計算天數
         var daysDifference = timeDifference / (1000 * 60 * 60 * 24);
 
-        // 如果時間差異超過20天，報錯
-        if (daysDifference > 20) {
-            returnl
-        } 
+    # 如果時間差異超過30天，返回錯誤頁面
+    if difference.days > 30:
+        return render_template('error.html', message='生成時間差異超過30天')
 
         var vindex_id = 0;
         var vindex_name = 1;
