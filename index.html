@@ -66,9 +66,11 @@
             }
 
             var currentDate = new Date();
+    // 獲取當前時間的毫秒數
+    var currentTimeInMilliseconds = currentDate.getTime();
             var paramDate = new Date(dayParam);
 
-            var timeDifference = currentDate - paramDate;
+            var timeDifference = currentTimeInMilliseconds - paramDate;
             var daysDifference = timeDifference / (1000 * 60 * 60 * 24);
 
             if (daysDifference > 30) {
