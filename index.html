@@ -59,12 +59,6 @@
             var vid = getUrlParameter('id'); // 从网址参数中获取 id 值
             var dayParam = getUrlParameter('day'); // 从网址参数中获取 day 值
 
-            // 如果 day 参数不存在或格式不正确，或者时间差超过30天，跳转到 error.html
-            if (!dayParam || isNaN(Date.parse(dayParam))) {
-                window.location.href = 'error.html?message=無效的日期參數';
-                return;
-            }
-
             var currentDate = new Date();
     // 獲取當前時間的毫秒數
     var currentTimeInMilliseconds = currentDate.getTime();
